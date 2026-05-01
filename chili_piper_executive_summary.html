@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chili Piper Slot Configuration — Executive Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #4a4a45;
+    --ink-light: #8a8a82;
+    --rule: #e0dfd8;
+    --cream: #faf9f6;
+    --amber: #c8851a;
+    --amber-light: #fdf3e0;
+    --green: #2a6b45;
+    --green-light: #e6f2ec;
+    --blue: #1e4d7a;
+    --blue-light: #e8f0f8;
+    --red: #8b2e2e;
+    --red-light: #faeaea;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 64px 80px;
+  }
+
+  /* Header */
+  .header {
+    border-top: 3px solid var(--ink);
+    padding-top: 28px;
+    margin-bottom: 40px;
+  }
+  .header-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .header-left {}
+  .label-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    max-width: 520px;
+  }
+  .header-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .meta-line {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-bottom: 3px;
+  }
+  .meta-line strong {
+    color: var(--ink-mid);
+    font-weight: 500;
+  }
+
+  /* Divider */
+  .rule { border: none; border-top: 1px solid var(--rule); margin: 32px 0; }
+
+  /* Verdict banner */
+  .verdict {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    padding: 20px 24px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 36px;
+  }
+  .verdict-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .verdict p {
+    font-size: 14.5px;
+    color: #1a3328;
+    line-height: 1.6;
+  }
+  .verdict p strong { font-weight: 500; }
+
+  /* KPI strip */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .kpi {
+    background: white;
+    padding: 18px 20px;
+  }
+  .kpi-label {
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .kpi-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-value.amber { color: var(--amber); }
+  .kpi-value.green { color: var(--green); }
+  .kpi-value.red { color: var(--red); }
+  .kpi-sub {
+    font-size: 11px;
+    color: var(--ink-light);
+    line-height: 1.4;
+  }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--ink-light);
+    flex-shrink: 0;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  /* Two-col layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* Callout boxes */
+  .box {
+    padding: 16px 18px;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .box-amber { background: var(--amber-light); border-left: 3px solid var(--amber); }
+  .box-green { background: var(--green-light); border-left: 3px solid var(--green); }
+  .box-blue  { background: var(--blue-light);  border-left: 3px solid var(--blue); }
+  .box-red   { background: var(--red-light);   border-left: 3px solid var(--red); }
+  .box-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .box-amber .box-eyebrow { color: var(--amber); }
+  .box-green .box-eyebrow { color: var(--green); }
+  .box-blue  .box-eyebrow { color: var(--blue); }
+  .box-red   .box-eyebrow { color: var(--red); }
+  .box p { color: var(--ink-mid); }
+  .box p strong { color: var(--ink); font-weight: 500; }
+
+  /* Data table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-bottom: 12px;
+  }
+  .data-table thead tr {
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .data-table th {
+    text-align: right;
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .data-table th:first-child { text-align: left; }
+  .data-table td {
+    text-align: right;
+    padding: 7px 10px;
+    color: var(--ink-mid);
+    border-bottom: 1px solid var(--rule);
+  }
+  .data-table td:first-child { text-align: left; color: var(--ink); font-weight: 500; }
+  .data-table tr.highlight td { background: #fff9ef; }
+  .data-table tr.highlight td:first-child::after {
+    content: ' ↑';
+    color: var(--amber);
+    font-size: 11px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-red   { background: var(--red-light);   color: var(--red); }
+  .badge-green { background: var(--green-light);  color: var(--green); }
+
+  /* Body text */
+  p.body { color: var(--ink-mid); margin-bottom: 12px; font-size: 13.5px; }
+  p.body strong { color: var(--ink); font-weight: 500; }
+
+  /* Finding list */
+  .findings { list-style: none; margin: 0; padding: 0; }
+  .findings li {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.55;
+  }
+  .findings li:last-child { border-bottom: none; }
+  .findings li strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 1px; }
+  .finding-marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .fm-amber { background: var(--amber-light); color: var(--amber); }
+  .fm-green { background: var(--green-light); color: var(--green); }
+  .fm-blue  { background: var(--blue-light);  color: var(--blue); }
+  .fm-red   { background: var(--red-light);   color: var(--red); }
+
+  /* Agent impact mini-table */
+  .agent-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12.5px;
+  }
+  .agent-row:last-child { border-bottom: none; }
+  .agent-name { width: 180px; color: var(--ink); font-weight: 500; flex-shrink: 0; }
+  .agent-bar-wrap { flex: 1; height: 6px; background: var(--rule); border-radius: 3px; }
+  .agent-bar { height: 6px; border-radius: 3px; }
+  .agent-stat { width: 80px; text-align: right; color: var(--ink-mid); font-size: 12px; }
+
+  /* Recommendation box */
+  .recommendation {
+    background: white;
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--ink);
+    padding: 24px 28px;
+    border-radius: 0 0 6px 6px;
+    margin-top: 36px;
+  }
+  .rec-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+  }
+  .rec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 16px;
+  }
+  .rec-item {}
+  .rec-item-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 5px;
+  }
+  .rec-item p { font-size: 13px; color: var(--ink-mid); line-height: 1.55; }
+  .rec-item p strong { color: var(--ink); font-weight: 500; }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-note { font-size: 11px; color: var(--ink-light); line-height: 1.5; }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 32px 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-meta">
+      <div class="header-left">
+        <div class="label-tag">Revenue Lifecycle — Internal Brief</div>
+        <h1>Chili Piper Slot Configuration: What the Data Shows</h1>
+      </div>
+      <div class="header-right">
+        <div class="meta-line"><strong>Prepared by</strong> Viviana Vera, Revenue Lifecycle Manager</div>
+        <div class="meta-line"><strong>Reviewed by</strong> Viviana Vera with Claude (AI-assisted analysis)</div>
+        <div class="meta-line"><strong>Date</strong> May 2026</div>
+        <div class="meta-line"><strong>Period</strong> Jul 2025 – Apr 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Verdict -->
+  <div class="verdict">
+    <div class="verdict-eyebrow">Bottom line</div>
+    <p>The :15/:45 slot configuration had a <strong>real but limited operational impact on individual agents</strong> — most significantly Kyara and Ace — accounting for an estimated <strong>2.5% reduction in potential meetings</strong> during the affected window. Critically, the rate at which clients who were shown a calendar went on to book a meeting <strong>did not decline</strong> during this period — ruling out a negative client-side effect. The broader decline in total meetings between Sept/Oct 2025 and Jan/Feb 2026 is driven primarily by a <strong>28% drop in qualified lead volume</strong>, not the slot configuration.</p>
+  </div>
+
+  <!-- KPI strip -->
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kpi-label">:15/:45 slots as % of all bookings</div>
+      <div class="kpi-value amber">9.1%</div>
+      <div class="kpi-sub">Jan 6 – Mar 29, 2026</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Agent-hours truly blocked to 1 meeting</div>
+      <div class="kpi-value amber">6.9%</div>
+      <div class="kpi-sub">235 of 3,382 hours worked</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Close rate during :15/:45 window (calendar shown → booked)</div>
+      <div class="kpi-value green">91%</div>
+      <div class="kpi-sub">Stable vs 87–88% pre-change</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Qualified lead drop — Sept/Oct → Jan/Feb</div>
+      <div class="kpi-value red">−28%</div>
+      <div class="kpi-sub">2,375 → 1,701 per month</div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Section 1: The operational impact -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>The slot change did create a real operational problem — for some agents</h2>
+    </div>
+
+    <p class="body">When a client booked a :15 or :45 slot, the resulting gap before and after the meeting could prevent another booking from fitting in the same hour. This is the issue the team raised, and the data confirms it happened.</p>
+
+    <div class="two-col">
+      <div class="box box-amber">
+        <div class="box-eyebrow">Scale of the effect</div>
+        <p>9.1% of all bookings landed on a :15 or :45 slot. Of all agent-hours worked during the window, <strong>6.9% were blocked to a single meeting</strong> due to a :15/:45 booking. Estimated meetings lost: <strong>~134</strong>, or 2.5% of total meetings in the period.</p>
+      </div>
+      <div class="box box-red">
+        <div class="box-eyebrow">Most affected agents</div>
+        <p>Impact was unevenly distributed. <strong>Kyara Canedo</strong> had 19% of her bookings land on :15/:45 slots (43 blocked hours). <strong>Ace Barcelona</strong> had 14% (36 blocked hours). Most other agents were below 13%.</p>
+      </div>
+    </div>
+
+    <!-- Agent mini-chart -->
+    <div style="background:white; border:1px solid var(--rule); border-radius:4px; padding:16px 18px; margin-top:4px;">
+      <div style="font-size:10px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-light); margin-bottom:12px;">:15/:45 slot % per agent — Jan 28 to Mar 29, 2026</div>
+      <div class="agent-row">
+        <div class="agent-name">Kyara Canedo</div>
+        <div class="agent-bar-wrap"><div class="agent-bar" style="width:100%; background:var(--red);"></div></div>
+        <div class="agent-stat">19% &nbsp; 43 hrs</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-name">Ace Barcelona</div>
+        <div class="agent-bar-wrap"><div class="agent-bar" style="width:74%; background:var(--amber);"></div></div>
+        <div class="agent-stat">14% &nbsp; 36 hrs</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-name">Thais Meisel</div>
+        <div class="agent-bar-wrap"><div class="agent-bar" style="width:66%; background:var(--amber);"></div></div>
+        <div class="agent-stat">12.5% &nbsp; 44 hrs</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-name">Gareth Sampson</div>
+        <div class="agent-bar-wrap"><div class="agent-bar" style="width:65%; background:var(--amber);"></div></div>
+        <div class="agent-stat">12.4% &nbsp; 46 hrs</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-name">Justin Baldo</div>
+        <div class="agent-bar-wrap"><div class="agent-bar" style="width:66%; background:var(--amber);"></div></div>
+        <div class="agent-stat">12.6% &nbsp; 43 hrs</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-name">Voltaire Encarnacion</div>
+        <div class="agent-bar-wrap"><div class="agent-bar" style="width:57%; background: #c8c4a0;"></div></div>
+        <div class="agent-stat">10.9% &nbsp; 41 hrs</div>
+      </div>
+      <div class="agent-row">
+        <div class="agent-name">Lisa Lamontagne</div>
+        <div class="agent-bar-wrap"><div class="agent-bar" style="width:57%; background: #c8c4a0;"></div></div>
+        <div class="agent-stat">10.8% &nbsp; 31 hrs</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Section 2: Client side -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>No evidence of client-side harm — booking rate held steady throughout</h2>
+    </div>
+
+    <p class="body">The Chili Piper Form Conversion data tracks every client who was shown a booking calendar and whether they completed a booking (close rate = meetings scheduled ÷ calendar displayed). If the :15/:45 slots created confusion or friction, we would expect this rate to fall during the affected period. It did not.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Calendar shown</th>
+          <th>Meetings booked</th>
+          <th>Close rate <span style="font-weight:300;text-transform:none;letter-spacing:0">(booked ÷ shown)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sep 2025 <span class="badge badge-green">peak</span></td>
+          <td>2,638</td><td>2,311</td><td>88%</td>
+        </tr>
+        <tr>
+          <td>Oct 2025</td>
+          <td>2,330</td><td>2,037</td><td>87%</td>
+        </tr>
+        <tr>
+          <td>Jan 2026</td>
+          <td>1,763</td><td>1,564</td><td>89%</td>
+        </tr>
+        <tr class="highlight">
+          <td>Feb 2026 <span class="badge badge-amber">:15/:45 slots active</span></td>
+          <td>1,865</td><td>1,695</td><td>91%</td>
+        </tr>
+        <tr class="highlight">
+          <td>Mar 2026 <span class="badge badge-amber">:15/:45 slots active</span></td>
+          <td>2,180</td><td>1,986</td><td>91%</td>
+        </tr>
+        <tr>
+          <td>Apr 2026 <span class="badge badge-green">reverted</span></td>
+          <td>1,991</td><td>1,843</td><td>93%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="box box-green" style="margin-top: 4px;">
+      <div class="box-eyebrow">Key finding</div>
+      <p>The close rate was stable across all configuration states — 87–88% before the change, 91% during the :15/:45 window, 93% after the revert. <strong>No configuration produced a decline.</strong> The data contains no evidence that slot configuration, in either direction, materially affected whether clients completed a booking.</p>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Section 3: Lead volume -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>The headline meetings decline is explained by fewer qualified leads entering the funnel</h2>
+    </div>
+
+    <p class="body">Sept/Oct 2025 and Jan/Feb 2026 are structurally different periods. Lead volume, campaign performance, and agent headcount all shifted between them. These factors — not calendar configuration — account for the difference in meeting totals.</p>
+
+    <ul class="findings">
+      <li>
+        <div class="finding-marker fm-red">↓</div>
+        <div>
+          <strong>Qualified lead volume fell 28%</strong>
+          Sept/Oct 2025 averaged 2,375 qualified leads per month at 105/day. Jan/Feb 2026 averaged 1,701 per month at 81/day. Ad spend was comparable (~AUD 450k vs ~AUD 424k), but efficiency dropped from 55 leads per AUD 10k to 38–42 — meaning the same budget generated fewer qualified prospects.
+        </div>
+      </li>
+      <li>
+        <div class="finding-marker fm-amber">↑</div>
+        <div>
+          <strong>Agent headcount grew from 10 to 12–14 during the same window</strong>
+          Three new agents joined between January and February 2026 (Gareth, Lisa, Jorge), with two more added in April. When headcount grows faster than lead volume, meetings per agent per day falls arithmetically — even if total throughput is stable. This is a ramp-up effect, not a capacity problem.
+        </div>
+      </li>
+      <li>
+        <div class="finding-marker fm-blue">→</div>
+        <div>
+          <strong>Cancellation rate was unchanged across both periods</strong>
+          Sept/Oct 2025: 8.9%. Jan/Feb 2026: 8.4–8.7%. No step-change at the slot configuration date. The slot change did not affect whether booked meetings were kept.
+        </div>
+      </li>
+      <li>
+        <div class="finding-marker fm-red">↓</div>
+        <div>
+          <strong>November 2025 suppression preceded the config change</strong>
+          The decline in meetings per agent began in November 2025 — two months before the slot change. This was driven by a Google Ads reset that reduced qualified lead volume from 97/day to 70/day. The December ads pause compounded this. The slot change was introduced into an already-weakened pipeline.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Recommendation -->
+  <div class="recommendation">
+    <div class="rec-eyebrow">Findings &amp; Close-out</div>
+    <div class="rec-grid">
+      <div class="rec-item">
+        <div class="rec-item-label">:15/:45 Slots — Closed</div>
+        <p>Reverting to :00/:30 slots was the right call to <strong>remove calendar friction for the sales team</strong>, with some agents more affected than others during the window. However, this change will not materially affect total meeting volume — the data found no evidence that the slot configuration impacted overall bookings. The issue was operational and agent-side; it has been resolved.</p>
+      </div>
+      <div class="rec-item">
+        <div class="rec-item-label">Lead Volume — In Discussion</div>
+        <p>The funnel from calendar displayed to meeting booked is performing well, with conversion rates at their strongest point in the analysis period. However, <strong>qualified lead volume remains below October 2025 levels</strong> while team headcount has grown. Understanding any changes to Ads targeting, ICP definition, or geographic focus would help identify how to return to higher lead volumes.<br><br><em>Internal action in progress: ICP analysis review underway based on existing client base.</em></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-note">
+      <strong>Data sources</strong><br>
+      Chili Piper bookings export (meeting-level data, all statuses) &nbsp;·&nbsp; Chili Piper Concierge Analytics (Form Conversion funnel, monthly)<br>
+      HubSpot MQL records (qualified leads, job-seekers excluded) &nbsp;·&nbsp; Google Ads monthly spend report (AUD)<br>
+      :15/:45 slot window defined as January 28 – March 29, 2026 (first and last confirmed :15/:45 bookings in export data)
+    </div>
+    <div class="footer-note" style="text-align:right;">
+      BruntWork Revenue Lifecycle<br>
+      Confidential — internal use only
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
